@@ -57,13 +57,30 @@
                 </div>
                 <div class="card-action">
                     <h5 id="task-title">List of Tasks</h5>
-                    <div class="input-field col s12">
+                    <div class="input-field col s9">
                         <input type="search" name="filter" id="filter">
                         <label for="filter">Search</label>
+                         
+                        
                     </div>
-                    <ul class="collection">
+
+                   
+                    
+                    <!-- sort -->
+                 <div class="input-field col s3">
+                    <select id="sort" class="browser-default">
+                        <option value="1" selected>Ascending</option>
+                        <option value="2">Descending</option>
+                    </select>
+                    
+                </div>
+                    
+                    <ul class="collection col s12">
+                        
+                        
                         <!-- Here is the task list goes  -->
                     </ul>
+                   
                     <a href="#" class="clear-tasks btn red">Clear All Task</a>
                 </div>
             </div>
@@ -82,8 +99,7 @@
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Storage Js -->
-    <script src="assets/js/storage.js"></script>
+
     <!-- Our Own Js  -->
     <script src="assets/js/app.js"></script>
 </body>
