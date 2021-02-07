@@ -5,6 +5,7 @@ const taskInput = document.querySelector('#task'); //the task input text field
 //read from q string 
 const urlParams = new URLSearchParams(window.location.search);
 const id = Number(urlParams.get('id'));
+let date;
 //DB
 var DB;
 
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         request.onsuccess = function(event) {
             if (request.result) {
                 taskInput.value = request.result.taskname;
-
+                date = request.result.date;
             } else {
                 console.log('No data record');
             }
@@ -57,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateTask(e) {
         e.preventDefault();
-
         // Check empty entry
         if (taskInput.value === '') {
             taskInput.style.borderColor = "red";
@@ -65,18 +65,22 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        /* 
-        Instruction set to handle Update
 
-        1. Declare the transaction and object store objects 
-        2. Use the id on put method of index db
-        
-        */
+        var transaction = DB.transaction(['tasks'], 'readwrite');
+        var objectStore = transaction.objectStore('tasks');
 
+        const data = {
+            taskname: taskInput.value,
+            date : date,
+            id: id,
+        }
+
+
+    const update = objectStore.put(data);
+    update.onsuccess = () => {
         history.back();
-    }
+    };
+};
 
-
-
-
+        
 });
